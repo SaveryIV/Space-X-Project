@@ -20,7 +20,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "check-style": "npx stylelint '**/*.{css,scss}'",
+    "check-eslint":"npx eslint '**/*.{js,jsx}'",
+    "fixing-style": "npx stylelint '**/*.{css,scss}' --fix",
+    "fixing-eslint":"npx eslint '**/*.{js,jsx}' --fix"
   },
   "eslintConfig": {
     "extends": [
