@@ -27,34 +27,62 @@ function Missions() {
     setActiveMembers({ ...activeMembers, [missionId]: false });
   };
 
-  const getMembershipLabel = (mission) => (activeMembers[mission.mission_id] ? 'ACTIVE MEMBER' : 'NOT A MEMBER');
+  const getMembershipLabel = (mission) => (
+    activeMembers[mission.mission_id]
+      ? 'ACTIVE MEMBER'
+      : 'NOT A MEMBER');
+
+  const getButtonStyles = (mission) => {
+    if (activeMembers[mission.mission_id]) {
+      return {
+        background: 'transparent',
+        border: '1px solid red',
+        color: 'red',
+      };
+    }
+    return {
+      background: 'transparent',
+      border: '1px solid rgb(95, 92, 92)',
+      color: 'rgb(95, 92, 92)',
+    };
+  };
 
   return (
     <div className="missions-container">
-      <div className="mission-heading">
-        <h2 className="heading-one">Missions</h2>
-        <h2 className="heading-two">Description</h2>
-        <h2 className="heading-three">Status</h2>
-        <div className="heading-four" />
-      </div>
-      {missions.map((mission) => (
-        <div key={mission.mission_id} className="missions-row">
-          <div className="mission-details">
-            <h3>{mission.mission_name}</h3>
-            <p>{mission.description}</p>
-            <div className="mission-status">
-              <div className="mission-label">
-                <span
+      <table className="missions-table">
+        <thead>
+          <tr>
+            <th>Mission</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {missions.map((mission) => (
+            <tr
+              key={mission.mission_id}
+              className={classNames(
+                { active: activeMembers[mission.mission_id] },
+              )}
+            >
+              <td className="mission-name">{mission.mission_name}</td>
+              <td>{mission.description}</td>
+              <td>
+                <p
                   className={classNames('membership-label', {
-                    'active-member': activeMembers[mission.mission_id],
+                    'active-member-label': activeMembers[mission.mission_id],
                   })}
                 >
                   {getMembershipLabel(mission)}
-                </span>
-              </div>
-              <div className="mission-button">
+                </p>
+
+              </td>
+              <td>
                 <button
                   type="button"
+                  className="action-button"
+                  style={getButtonStyles(mission)}
                   onClick={() => (
                     activeMembers[mission.mission_id]
                       ? handleLeaveMission(mission.mission_id)
@@ -63,14 +91,12 @@ function Missions() {
                 >
                   {activeMembers[mission.mission_id] ? 'Leave Mission' : 'Join Mission'}
                 </button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      ))}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
-
 export default Missions;
