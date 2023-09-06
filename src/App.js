@@ -1,7 +1,7 @@
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Rockets from './components/Rockets';
-import Home from './components/Home';
+import MyProfile from './components/MyProfile';
 import NotFound from './components/NotFound';
 import Navbar from './components/Navbar';
 import Missions from './components/Missions';
@@ -9,15 +9,15 @@ import Missions from './components/Missions';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<MyProfile />} />
           <Route path="/rockets" element={<Rockets />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/missions" element={<Missions />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }

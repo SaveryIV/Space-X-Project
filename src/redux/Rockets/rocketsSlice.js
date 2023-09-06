@@ -1,29 +1,28 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const initialState = {
   status: 'Not selected',
   deploy: false,
 };
 
-const missionsSlice = createSlice({
-  name: 'missions',
+const rocketsSlice = createSlice({
+  name: 'rockets',
   initialState,
   reducers: {
-    changeMissionStatus: (state) => {
+    changeRocketsStatus: (state) => {
       if (state.deploy === false) {
         state.status = 'Not selected';
       } else {
         state.status = 'Selected';
       }
     },
-    changeMissionDeploy: (state) => {
+    changeRocketsDeploy: (state) => {
       state.deploy = !state.deploy;
     },
   },
 });
 
-export const { changeMissionStatus, changeMissionDeploy } = missionsSlice.actions;
-export default missionsSlice.reducer;
+export const { changeRocketsDeploy, changeRocketsStatus } = rocketsSlice.actions;
+export default rocketsSlice.reducer;

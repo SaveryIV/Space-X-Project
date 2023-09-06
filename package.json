@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.0",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
@@ -22,9 +23,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "check-style": "npx stylelint '**/*.{css,scss}'",
-    "check-eslint":"npx eslint '**/*.{js,jsx}'",
+    "check-eslint": "npx eslint '**/*.{js,jsx}'",
     "fixing-style": "npx stylelint '**/*.{css,scss}' --fix",
-    "fixing-eslint":"npx eslint '**/*.{js,jsx}' --fix"
+    "fixing-eslint": "npx eslint '**/*.{js,jsx}' --fix"
   },
   "eslintConfig": {
     "extends": [
