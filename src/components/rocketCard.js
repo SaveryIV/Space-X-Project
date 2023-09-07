@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { reserveRocket, cancelReservation } from './redux/Rockets/rocketsSlice';
+import { reserveRocket, cancelReservation } from '../redux/Rockets/rocketsSlice';
 
 const RocketCard = ({ props }) => {
   const {
