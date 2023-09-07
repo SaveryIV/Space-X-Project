@@ -10,20 +10,31 @@ function Profiles() {
   const activeMissions = allMissions.filter(
     (mission) => joinedMissions.includes(mission.mission_id),
   );
+  const { rockets } = useSelector((state) => state.rockets);
+  const reservedRockets = rockets.filter((rocket) => rocket.reserved === true);
 
   return (
-    <div className="profiles-container">
-      <h2 className="profile-missions-heading">My Missions</h2>
-
-      <table className="profile-missions-table">
-        <tbody>
-          {activeMissions.map((mission) => (
-            <tr key={mission.mission_id}>
-              <td>{mission.mission_name}</td>
-            </tr>
+    <div className="container">
+      <div className="rockets">
+        <p className="rockets-title">My Rockets</p>
+        <ul className="list-rockets">
+          {reservedRockets.map((rocket) => (
+            <li key={rocket.id}>{rocket.name}</li>
           ))}
-        </tbody>
-      </table>
+        </ul>
+      </div>
+      <div className="profiles-container">
+        <h2 className="profile-missions-heading">My Missions</h2>
+        <table className="profile-missions-table">
+          <tbody>
+            {activeMissions.map((mission) => (
+              <tr key={mission.mission_id}>
+                <td>{mission.mission_name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
