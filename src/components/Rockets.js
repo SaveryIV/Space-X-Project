@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRockets } from '../redux/Rockets/rocketsSlice';
 import RocketCard from './rocketCard';
@@ -8,8 +8,10 @@ const Rockets = () => {
   const dispatch = useDispatch();
   const { rockets, pending, error } = useSelector((store) => store.rockets);
   useEffect(() => {
-    dispatch(fetchRockets());
-  }, [dispatch]);
+    if (rockets.length < 1) {
+      dispatch(fetchRockets());
+    }
+  }, [dispatch, rockets.length]);
 
   let content;
 
@@ -24,14 +26,17 @@ const Rockets = () => {
   }
 
   if (pending) {
-    content = <h1>Fetching Rockets</h1>;
+    content = (
+      <h1>Fetching Rockets</h1>
+    );
   }
   if (error) {
-    content = <h1>Error occured while fetching Rockets</h1>;
+    content = (
+      <h1>Error occured while fetching Rockets</h1>
+    );
   }
-
   return (
-    <section className="rocket-section">
+    <section className="rocket">
       {content}
     </section>
   );
