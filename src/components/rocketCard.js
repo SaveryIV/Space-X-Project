@@ -21,23 +21,26 @@ const RocketCard = ({ props }) => {
   };
 
   return (
-    <div key={id}>
+    <div key={id} className="rocket-alone">
       <div>
         <img src={image} alt="" />
       </div>
-      <div>
-        <p>{name}</p>
-        <p>{description}</p>
+      <div className="rocket-desc">
+        <h2>{name}</h2>
+        <div className="badge">
+          {reserved && <span className="reserved-badge">Reserved</span>}
+          <p>{description}</p>
+        </div>
+        {reserved ? (
+          <button type="button" className="cancel-reservation" onClick={handleReserveClick}>
+            Cancel Reservation
+          </button>
+        ) : (
+          <button type="button" className="rocket-reservation" onClick={handleReserveClick}>
+            Reserve rocket
+          </button>
+        )}
       </div>
-      {reserved ? (
-        <button type="button" onClick={handleReserveClick}>
-          Cancel Reservation
-        </button>
-      ) : (
-        <button type="button" onClick={handleReserveClick}>
-          Reserve rocket
-        </button>
-      )}
     </div>
   );
 };
