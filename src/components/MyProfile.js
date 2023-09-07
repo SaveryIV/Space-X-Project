@@ -15,14 +15,20 @@ function Profiles() {
 
   return (
     <div className="container">
-      <div className="rockets">
-        <p className="rockets-title">My Rockets</p>
-        <ul className="list-rockets">
-          {reservedRockets.map((rocket) => (
-            <li key={rocket.id}>{rocket.name}</li>
-          ))}
-        </ul>
+
+      <div className="profiles-container">
+        <h2 className="profile-missions-heading">My Rockets</h2>
+        <table className="profile-missions-table">
+          <tbody>
+            {reservedRockets.map((rocket) => (
+              <tr key={rocket.id}>
+                <td>{rocket.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+
       <div className="profiles-container">
         <h2 className="profile-missions-heading">My Missions</h2>
         <table className="profile-missions-table">
@@ -35,6 +41,7 @@ function Profiles() {
           </tbody>
         </table>
       </div>
+
     </div>
   );
 }
