@@ -1,14 +1,12 @@
 /* eslint-disable no-useless-catch */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Define the initial state
 const initialState = {
   missions: [],
   joinedMissions: [],
   status: 'idle',
   error: null,
 };
-// Create an async thunk for fetching missions
 export const fetchMissions = createAsyncThunk('missions/fetchMissions', async () => {
   try {
     const response = await fetch('https://api.spacexdata.com/v3/missions');
@@ -19,7 +17,6 @@ export const fetchMissions = createAsyncThunk('missions/fetchMissions', async ()
   }
 });
 
-// Create a mission slice using createSlice
 const missionSlice = createSlice({
   name: 'missions',
   initialState,
