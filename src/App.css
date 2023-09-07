@@ -9,6 +9,7 @@
 
 .container-logo {
   display: flex;
+  margin-left: 20px;
 }
 
 .logo {
@@ -101,7 +102,14 @@
 
 /* profiles.css */
 
+.container {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
 .profiles-container {
+  width: 50%;
   text-align: center;
   padding: 20px;
 }
@@ -115,7 +123,7 @@
 }
 
 .profile-missions-table {
-  width: 40%;
+  width: 100%;
   margin-right: auto;
   border-collapse: collapse;
 }
