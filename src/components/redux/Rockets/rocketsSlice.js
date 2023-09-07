@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -30,44 +28,35 @@ const rocketsSlice = createSlice({
   name: 'rocket',
   initialState,
   reducers: {
-    handleRocket: (state, { payload }) => {
-      const rockets = [];
-      state.rockets.forEach((rocket) => {
-        if (rocket.id === payload) {
-          rockets.push({
-            ...rocket,
-            reserved: !rocket.reserved,
-          });
-        } else {
-          rockets.push({ ...rocket });
-        }
-      });
-      return {
-        ...state,
-        rockets,
-      };
+    reserveRocket: (state, action) => {
+      const rocketId = action.payload;
+      const updatedRockets = state.rockets.map((rocket) => (rocket.id === rocketId
+        ? { ...rocket, reserved: true } : rocket));
+      state.rockets = updatedRockets;
+    },
+    cancelReservation: (state, action) => {
+      const rocketId = action.payload;
+      const updatedRockets = state.rockets.map((rocket) => (rocket.id === rocketId
+        ? { ...rocket, reserved: false } : rocket));
+      state.rockets = updatedRockets;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchRockets.fulfilled, (state, { payload }) => ({
-      ...state,
-      rockets: payload,
-      pending: false,
-      error: false,
-    }));
-    builder.addCase(fetchRockets.pending, (state) => ({
-      ...state,
-      pending: true,
-      error: false,
-    }));
-
-    builder.addCase(fetchRockets.rejected, (state) => ({
-      ...state,
-      pending: false,
-      error: true,
-    }));
+    builder.addCase(fetchRockets.fulfilled, (state, action) => {
+      state.rockets = action.payload;
+      state.pending = false;
+      state.error = false;
+    });
+    builder.addCase(fetchRockets.pending, (state) => {
+      state.pending = true;
+      state.error = false;
+    });
+    builder.addCase(fetchRockets.rejected, (state) => {
+      state.pending = false;
+      state.error = true;
+    });
   },
 });
 
 export default rocketsSlice.reducer;
-export const { handleRocket } = rocketsSlice.actions;
+export const { reserveRocket, cancelReservation } = rocketsSlice.actions;
