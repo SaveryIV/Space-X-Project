@@ -1,10 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { reserveRocket, cancelReservation } from '../redux/Rockets/rocketsSlice';
 import '../App.css';
 
+// eslint-disable-next-line react/prop-types
 const RocketCard = ({ props }) => {
   const {
     id, name, image, description, reserved,
